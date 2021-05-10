@@ -1,0 +1,21 @@
+###
+POST localhost:8080/projects/add
+Content-Type: application/json
+
+{"name":  "Project first"}
+
+###
+
+GET localhost:8080/projects
+###
+###
+
+GET localhost:8080/projects/1
+###
+
+GET localhost:8080/projects/search?text=zalupa
+###
+
+POST localhost:8080/projects/delete/1
+
+##
