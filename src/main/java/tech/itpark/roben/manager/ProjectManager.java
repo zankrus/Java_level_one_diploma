@@ -1,7 +1,10 @@
 package tech.itpark.roben.manager;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import tech.itpark.roben.domain.Project;
 import tech.itpark.roben.exceptions.ConstraintException;
@@ -42,18 +45,36 @@ public class ProjectManager {
         );
     }
 
-    public void add(Project project)
-    {jdbcTemplate.update(
-            // language=SQL
-            "INSERT INTO projects(name) VALUES (:name)", // named parameter - вместо ? подставляем псевдонимы :content
-            // map -> key, value
-            // TODO:
-            //  1. если content и value не могут быть null -> Map.of("content", post.getContent(), "media", post.getMedia());
-            //  2. если хотя бы один может быть null - надо собирать "руками"
-            Map.of(
-                    "name", project.getName()
-            )
-    );
+    public Project add(Project project) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        if (project.getId() == 0) {
+            jdbcTemplate.update(
+                    // language=SQL
+                    "INSERT INTO projects(name) VALUES (:name)",
+                    new MapSqlParameterSource(Map.of(
+                            "name", project.getName()
+                    )),
+                    keyHolder
+
+            );
+            long id = keyHolder.getKey().longValue();
+            return getByID(id);
+        }
+        jdbcTemplate.update(
+                // language=SQL
+                "UPDATE  projects set name = :name where id = :id", // named parameter - вместо ? подставляем псевдонимы :content
+                // map -> key, value
+                // TODO:
+                //  1. если content и value не могут быть null -> Map.of("content", post.getContent(), "media", post.getMedia());
+                //  2. если хотя бы один может быть null - надо собирать "руками"
+                Map.of(
+                        "id", project.getId(),
+                        "name", project.getName()
+                )
+
+        );
+        return getByID(project.getId());
+
     }
 
     public List<Project> search(String text) {

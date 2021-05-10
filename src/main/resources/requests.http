@@ -2,7 +2,16 @@
 POST localhost:8080/projects/add
 Content-Type: application/json
 
-{"name":  "Project first"}
+{
+  "name":  "Project first ZALUPA"}
+
+######
+POST localhost:8080/projects/add
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name":  "Project first ZALUPA!1fdfdfdfd"}
 
 ###
 

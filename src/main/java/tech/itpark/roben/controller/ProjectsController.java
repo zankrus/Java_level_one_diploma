@@ -24,9 +24,8 @@ public class ProjectsController {
     }
 
     @PostMapping("/add")
-    public List<Project> addNewProduct(@RequestBody Project project){
-        manager.add(project);
-        return manager.lastItem();
+    public Project addNewProduct(@RequestBody Project project){
+        return manager.add(project);
     }
 
     @PostMapping("/delete/{id}")
