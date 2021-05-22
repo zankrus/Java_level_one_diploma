@@ -1,17 +1,15 @@
 ###
-POST localhost:8080/projects/add
+POST https://roben-diploma.herokuapp.com/projects/add
 Content-Type: application/json
 
 {
   "name":  "Project first"}
 
 ###
-GET localhost:8080/projects
-###
-GET localhost:8080/suites
+GET https://roben-diploma.herokuapp.com/suites
 ###
 
-POST localhost:8080/suites/add
+POST https://roben-diploma.herokuapp.com/suites/add
 Content-Type: application/json
 
 {
@@ -19,7 +17,7 @@ Content-Type: application/json
   "name":  "New Suites"}
 
 ###
-POST localhost:8080/suites/add
+POST https://roben-diploma.herokuapp.com/suites/add
 Content-Type: application/json
 
 {
@@ -29,23 +27,22 @@ Content-Type: application/json
 
 ###
 
-GET localhost:8080/projects
-###
-###
-
-GET localhost:8080/projects/1
+GET https://roben-diploma.herokuapp.com/projects
 ###
 
-GET localhost:8080/projects/search?text=Project first
+GET https://roben-diploma.herokuapp.com/projects/1
 ###
 
-GET localhost:8080/suites/search?text=New Suites
+GET https://roben-diploma.herokuapp.com/projects/search?text=Project first
 ###
 
-POST localhost:8080/projects/delete/1
+GET https://roben-diploma.herokuapp.com/suites/search?text=New Suites
+###
+
+POST https://roben-diploma.herokuapp.com/projects/delete/1
 
 ###
-POST http://localhost:8080/media
+POST https://roben-diploma.herokuapp.com/media
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
@@ -56,7 +53,7 @@ Content-Type: image/jpeg
 --WebAppBoundary--
 
 ###
-POST http://localhost:8080/cases/add
+POST https://roben-diploma.herokuapp.com/cases/add
 Content-Type: application/json
 
 {
@@ -65,7 +62,7 @@ Content-Type: application/json
   "attached_files": "36bd423d-121b-4eec-97c1-254fe30a5d12.jpg"
 }
 ###
-GET localhost:8080/cases/last
+GET https://roben-diploma.herokuapp.com/cases/last
 ###
 
-GET localhost:8080/cases/
+GET https://roben-diploma.herokuapp.com/cases/
