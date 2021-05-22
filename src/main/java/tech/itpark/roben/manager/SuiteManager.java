@@ -12,6 +12,7 @@ import tech.itpark.roben.mapper.SuiteMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Component
@@ -51,9 +52,10 @@ public class SuiteManager {
         if (suite.getId() == 0) {
             jdbcTemplate.update(
                     // language=SQL
-                    "INSERT INTO suites(name) VALUES (:name)",
+                    "INSERT INTO suites(name,project_id) VALUES (:name,:project_id)",
                     new MapSqlParameterSource(Map.of(
-                            "name", suite.getName()
+                            "name", suite.getName(),
+                            "project_id", suite.getProjectId()
                     )),
                     keyHolder
 
@@ -88,7 +90,7 @@ public class SuiteManager {
 
 
     private boolean contains(String field, String target) {
-        return field.toLowerCase().contains(target);
+        return field.toLowerCase().contains(target.toLowerCase());
     }
 
     public Suite deleteById(long id) {

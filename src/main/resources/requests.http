@@ -3,15 +3,29 @@ POST localhost:8080/projects/add
 Content-Type: application/json
 
 {
-  "name":  "Project first ZALUPA"}
+  "name":  "Project first"}
 
-######
-POST localhost:8080/projects/add
+###
+GET localhost:8080/projects
+###
+GET localhost:8080/suites
+###
+
+POST localhost:8080/suites/add
 Content-Type: application/json
 
 {
-  "id": 4,
-  "name":  "Project first ZALUPA!1fdfdfdfd"}
+  "projectId": 1,
+  "name":  "New Suites"}
+
+###
+POST localhost:8080/suites/add
+Content-Type: application/json
+
+{
+  "id": 1,
+  "projectId": 2,
+  "name":  "New Suites"}
 
 ###
 
@@ -22,9 +36,36 @@ GET localhost:8080/projects
 GET localhost:8080/projects/1
 ###
 
-GET localhost:8080/projects/search?text=zalupa
+GET localhost:8080/projects/search?text=Project first
+###
+
+GET localhost:8080/suites/search?text=New Suites
 ###
 
 POST localhost:8080/projects/delete/1
 
-##
+###
+POST http://localhost:8080/media
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="image.jpg"
+Content-Type: image/jpeg
+
+< ./media.jpg
+--WebAppBoundary--
+
+###
+POST http://localhost:8080/cases/add
+Content-Type: application/json
+
+{
+  "suite_id": 1,
+  "description": "Тестовый шаг",
+  "attached_files": "36bd423d-121b-4eec-97c1-254fe30a5d12.jpg"
+}
+###
+GET localhost:8080/cases/last
+###
+
+GET localhost:8080/cases/

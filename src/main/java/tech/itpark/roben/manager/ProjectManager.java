@@ -90,7 +90,7 @@ public class ProjectManager {
 
 
     private boolean contains(String field, String target) {
-        return field.toLowerCase().contains(target);
+        return field.toLowerCase().contains(target.toLowerCase());
     }
 
     public Project deleteById(long id) {

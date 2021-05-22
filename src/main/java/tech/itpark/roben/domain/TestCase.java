@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class TestCase {
     private long id;
     private long suite_id;
-    private String text;
-    private String filePath;
+    private String description;
+    private String attached_files;
 }

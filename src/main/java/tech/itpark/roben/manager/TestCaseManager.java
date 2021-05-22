@@ -56,8 +56,8 @@ public class TestCaseManager {
                     "INSERT INTO cases(suite_id, description, attached_files) VALUES (:suite_id, :description, :attached_files)",
                     new MapSqlParameterSource(Map.of(
                             "suite_id", testCase.getSuite_id(),
-                            "description", testCase.getText(),
-                            "attached_files", testCase.getFilePath()
+                            "description", testCase.getDescription(),
+                            "attached_files", testCase.getAttached_files()
                     )),
                     keyHolder
 
@@ -70,8 +70,8 @@ public class TestCaseManager {
                 "UPDATE  cases set suite_id = :suite_id, description = :description,attached_files =:files where id = :id",
                 Map.of(
                         "suite_id", testCase.getId(),
-                        "description", testCase.getText(),
-                        "attached_files", testCase.getFilePath()
+                        "description", testCase.getDescription(),
+                        "attached_files", testCase.getAttached_files()
                 )
         );
         return getByID(testCase.getId());
@@ -82,7 +82,7 @@ public class TestCaseManager {
         List<TestCase> all = getAll();
         List<TestCase> result = new ArrayList<>();
         for (TestCase testCase: all) {
-            if (contains(text, testCase.getText())) {
+            if (contains(text, testCase.getDescription())) {
                 result.add(testCase);
             }
         }

@@ -11,8 +11,8 @@ public class TestCaseMapper implements RowMapper<TestCase>{
         return new TestCase(
                 rs.getLong("id"),
                 rs.getLong("suite_id"),
-                rs.getString("text"),
-                rs.getString("filePath")
+                rs.getString("description"),
+                rs.getString("attached_files")
         );
     }
 }

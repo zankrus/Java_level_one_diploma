@@ -17,7 +17,13 @@ public class TestCaseController {
     List<TestCase> getAll(){
         return manager.getAll();
     }
-    //
+
+
+    @GetMapping("/last")
+    List<TestCase> giveLast(){
+        return manager.lastItem();
+    }
+
     @GetMapping("/search")
     List<TestCase> search(@RequestParam String text){
         return manager.search(text);
