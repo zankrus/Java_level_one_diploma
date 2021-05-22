@@ -31,7 +31,7 @@ public class TestCaseManager {
 
     public TestCase getByID(long id) {
         return jdbcTemplate.queryForObject("SELECT id, suite_id,description, attached_files FROM cases where id = :id",
-                Map.of("id",id),mapper
+                Map.of("id", id), mapper
         );
     }
 
@@ -81,7 +81,7 @@ public class TestCaseManager {
     public List<TestCase> search(String text) {
         List<TestCase> all = getAll();
         List<TestCase> result = new ArrayList<>();
-        for (TestCase testCase: all) {
+        for (TestCase testCase : all) {
             if (contains(text, testCase.getDescription())) {
                 result.add(testCase);
             }
@@ -102,8 +102,8 @@ public class TestCaseManager {
                     "DELETE FROM cases WHERE id = :id",
                     Map.of("id", testCase.getId())
             );
-            return testCase;}
-        catch (Exception  e) {
+            return testCase;
+        } catch (Exception e) {
             throw new ConstraintException("Невозможно удалить проект", e);
         }
     }

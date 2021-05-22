@@ -6,7 +6,7 @@ import tech.itpark.roben.domain.TestCase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TestCaseMapper implements RowMapper<TestCase>{
+public class TestCaseMapper implements RowMapper<TestCase> {
     public TestCase mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new TestCase(
                 rs.getLong("id"),

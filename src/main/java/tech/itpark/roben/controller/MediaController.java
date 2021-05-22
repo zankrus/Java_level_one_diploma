@@ -14,13 +14,10 @@ import tech.itpark.roben.manager.MediaManager;
 @RequestMapping("/media")
 @RequiredArgsConstructor
 public class MediaController {
-  private final MediaManager manager;
+    private final MediaManager manager;
 
-  // TODO: https://pastebin.com/7GAzCbqK
-  // Multipart works with POST
-  // имя параметра (file) должно совпадать с именем в requests.http (там тоже name=file)
-  @PostMapping
-  public Media save(@RequestParam MultipartFile file) { // пришлёт multipart file
-    return manager.save(file);
-  }
+    @PostMapping
+    public Media save(@RequestParam MultipartFile file) { // пришлёт multipart file
+        return manager.save(file);
+    }
 }

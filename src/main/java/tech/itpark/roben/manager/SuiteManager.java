@@ -12,7 +12,6 @@ import tech.itpark.roben.mapper.SuiteMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 @Component
@@ -31,7 +30,7 @@ public class SuiteManager {
 
     public Suite getByID(long id) {
         return jdbcTemplate.queryForObject("SELECT id, name,project_id FROM suites where id = :id",
-                Map.of("id",id),mapper
+                Map.of("id", id), mapper
         );
     }
 
@@ -80,7 +79,7 @@ public class SuiteManager {
     public List<Suite> search(String text) {
         List<Suite> all = getAll();
         List<Suite> result = new ArrayList<>();
-        for (Suite suite: all) {
+        for (Suite suite : all) {
             if (contains(text, suite.getName())) {
                 result.add(suite);
             }
@@ -101,8 +100,8 @@ public class SuiteManager {
                     "DELETE FROM suites WHERE id = :id",
                     Map.of("id", suite.getId())
             );
-            return suite;}
-        catch (Exception  e) {
+            return suite;
+        } catch (Exception e) {
             throw new ConstraintException("Невозможно удалить проект", e);
         }
     }

@@ -30,8 +30,8 @@ public class ProjectManager {
 
     public Project getByID(long id) {
         return jdbcTemplate.queryForObject("SELECT id, name FROM projects where id = :id",
-                Map.of("id",id),mapper
-                );
+                Map.of("id", id), mapper
+        );
     }
 
     public List<Project> lastItem() {
@@ -63,10 +63,6 @@ public class ProjectManager {
         jdbcTemplate.update(
                 // language=SQL
                 "UPDATE  projects set name = :name where id = :id", // named parameter - вместо ? подставляем псевдонимы :content
-                // map -> key, value
-                // TODO:
-                //  1. если content и value не могут быть null -> Map.of("content", post.getContent(), "media", post.getMedia());
-                //  2. если хотя бы один может быть null - надо собирать "руками"
                 Map.of(
                         "id", project.getId(),
                         "name", project.getName()
@@ -80,7 +76,7 @@ public class ProjectManager {
     public List<Project> search(String text) {
         List<Project> all = getAll();
         List<Project> result = new ArrayList<>();
-        for (Project project: all) {
+        for (Project project : all) {
             if (contains(text, project.getName())) {
                 result.add(project);
             }
@@ -94,16 +90,16 @@ public class ProjectManager {
     }
 
     public Project deleteById(long id) {
-    Project project = getByID(id);
-    try {
-        jdbcTemplate.update(
-                // language=SQL
-                "DELETE FROM projects WHERE id = :id",
-                Map.of("id", project.getId())
-        );
-        return project;}
-    catch (Exception  e) {
-        throw new ConstraintException("Невозможно удалить проект", e);
-    }
+        Project project = getByID(id);
+        try {
+            jdbcTemplate.update(
+                    // language=SQL
+                    "DELETE FROM projects WHERE id = :id",
+                    Map.of("id", project.getId())
+            );
+            return project;
+        } catch (Exception e) {
+            throw new ConstraintException("Невозможно удалить проект", e);
+        }
     }
 }

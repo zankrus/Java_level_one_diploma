@@ -6,7 +6,7 @@ import tech.itpark.roben.domain.Suite;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SuiteMapper implements RowMapper<Suite>{
+public class SuiteMapper implements RowMapper<Suite> {
     public Suite mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Suite(
                 rs.getLong("id"),

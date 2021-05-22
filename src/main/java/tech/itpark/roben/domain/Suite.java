@@ -1,4 +1,3 @@
-
 package tech.itpark.roben.domain;
 
 import lombok.AllArgsConstructor;

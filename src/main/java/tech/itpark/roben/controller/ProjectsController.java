@@ -14,27 +14,27 @@ public class ProjectsController {
     private final ProjectManager manager;
 
     @GetMapping()
-    List<Project> getAll(){
+    List<Project> getAll() {
         return manager.getAll();
     }
-//
+
     @GetMapping("/search")
-    List<Project> search(@RequestParam String text){
+    List<Project> search(@RequestParam String text) {
         return manager.search(text);
     }
 
     @PostMapping("/add")
-    public Project addNewProduct(@RequestBody Project project){
+    public Project addNewProduct(@RequestBody Project project) {
         return manager.add(project);
     }
 
     @PostMapping("/delete/{id}")
-    public Project deleteById(@PathVariable long id){
+    public Project deleteById(@PathVariable long id) {
         return manager.deleteById(id);
     }
 
     @GetMapping("/{id}")
-    public Project getById(@PathVariable long id){
-       return manager.getByID(id);
-  }
+    public Project getById(@PathVariable long id) {
+        return manager.getByID(id);
+    }
 }
